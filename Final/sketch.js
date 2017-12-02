@@ -1,8 +1,19 @@
+var song;
 var vader;
 var leia;
 var luke;
 var trooper;
-var red;
+var red = {
+
+    loc:0,
+    x: 900,
+    y: 300,
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    size: 300
+};
 var red_lit;
 var blue;
 var blue_lit;
@@ -12,6 +23,7 @@ var circX = 0;
 var speed = 80;
 
 function preload(){
+    song = loadSound("theme.mp3");
 
     vader = loadImage("vader.png");
     leia = loadImage("leia.png");
@@ -80,7 +92,13 @@ function draw(){
 //    images
     imageMode(CENTER);
     image(vader, 900, 300, 300, 300);
-    image(red, 800, 300, 300, 300);
+    image(red.loc, width/2, height/2);
+    red.top = red.y;
+    red.left = red.x;
+    red.right = red.x + red.size;
+    red.bottom = red.y + red.size;
+    
+    
     image(luke, 500, 300, 300, 300);
     image(blue, 600, 300, 300, 300);
     image(leia, 350, 300, 300, 300);
@@ -88,4 +106,12 @@ function draw(){
     image(red_lit, 800, 300, 300, 300);
     
 }
-
+ 
+function mousePressed(){
+    song.play();
+    if(mouseX < red.left && mouseX <red.right && mouseY > red.top && mouseY < bottom){
+    };
+    else {
+        image(red_lit, 300, 300);}
+    }
+}
